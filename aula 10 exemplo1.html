@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>teste</h1>
+    <ul></ul>
+    <script>
+        var itens = [
+            { name: "item 1" },
+            { name: "item 2" },
+            { name: "item 3" },
+            { name: "item 4" },
+        ];
+        var lista = document.querySelector("ul");
+        atualizalista();
+        
+        function atualizalista() {
+            lista.innerHTML = "";
+            for (var i = 0; i < itens.length; i++) {
+                var nLi = document.createElement("li");
+                var sNOME = document.createElement("span");
+                sNOME.textContent = itens[i].name;
+                var bDelete =document.createElement("button");
+                bDelete.textContent="X";
+                nLi.appendChild(sNOME);
+                nLi.appendChild(bDelete);
+                lista.appendChild(nLi);
+                bDelete.addEventListener("click", criaouvinte(i));
+            }
+        }
+        function criaouvinte(n) {
+            return function (evento) {
+                console.log(evento);
+                console.log("i:", n);
+                itens.splice(n, 1);
+                atualizalista();
+            }
+
+        }
+    </script>
+
+</body>
+
+</html>
